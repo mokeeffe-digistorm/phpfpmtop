@@ -441,7 +441,7 @@ MAINLOOP:
 
 			// Print beautiful sky colored table headers.
 			fmt.Printf("%s\033[K\n\r\033[0;37;44m", line.String())
-			fmt.Printf("%7s %10s %10s %10s %10s", "PID", "Uptime", "State", "Mem", "Duration")
+			fmt.Printf("%7s %10s %10s %10s %10s %10s", "PID", "Uptime", "State", "Mem", "CPU", "Duration")
 			fmt.Printf("\033[K\033[0m")
 
 			// Make room for headers.
@@ -502,7 +502,7 @@ MAINLOOP:
 					fmt.Printf("\033[33m")
 				}
 
-				part := fmt.Sprintf("%7d %10s %10s %10s %.2f %% %10s %7s",
+				part := fmt.Sprintf("%7d %10s %10s %10s %10.2f%% %10s %7s",
 					pro.Pid,
 					up.String(),
 					pro.State,
