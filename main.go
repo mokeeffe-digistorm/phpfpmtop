@@ -81,6 +81,20 @@ var (
 		time.Hour * 24}
 )
 
+func ByteCountSI(b int) string {
+	const unit = 1000
+	if b < unit {
+		return fmt.Sprintf("%d B", b)
+	}
+	div, exp := int(unit), 0
+	for n := b / unit; n >= unit; n /= unit {
+		div *= unit
+		exp++
+	}
+	return fmt.Sprintf("%.1f %cB",
+		float64(b)/float64(div), "kMGTPE"[exp])
+}
+
 func getTerminalSizeFallback() (int, int) {
 	// Try to use the environment variables set by some shells.
 	rows, _ := strconv.Atoi(os.Getenv("LINES"))
@@ -488,11 +502,12 @@ MAINLOOP:
 					fmt.Printf("\033[33m")
 				}
 
-				part := fmt.Sprintf("%7d %10s %10s %10d %10s %7s",
+				part := fmt.Sprintf("%7d %10s %10s %10s %.2f %% %10s %7s",
 					pro.Pid,
 					up.String(),
 					pro.State,
-					pro.LastRequestMemory,
+					ByteCountSI(pro.LastRequestMemory),
+					pro.LastRequestCPU,
 					durStr,
 					pro.RequestMethod,
 				)
