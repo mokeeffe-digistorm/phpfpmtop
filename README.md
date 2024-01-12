@@ -11,7 +11,7 @@ Go environment to build and install.
 
 If your GOPATH is properly configured, you can install and compile phpfpmtop like this:
 
-    go get github.com/abrander/phpfpmtop
+    go get github.com/mokeeffe-digistorm/phpfpmtop
 
 ## Configuration
 

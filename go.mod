@@ -1,4 +1,4 @@
-module github.com/abrander/phpfpmtop
+module github.com/mokeeffe-digistorm/phpfpmtop
 
 go 1.13
 
